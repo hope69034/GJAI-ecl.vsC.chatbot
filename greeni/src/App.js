@@ -6,7 +6,7 @@ import "./App.css";
 import Header from "./component/00.Header.js";
 import Greeni from "./component/01.Greeni";
 import Greenitest from "./component/02.Greenitest";
-
+ 
 function App() {
   return (
     <>
@@ -15,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Greeni></Greeni>}></Route>
         <Route path="/test" element={<Greenitest></Greenitest>}></Route>
+     
       </Routes>
     </>
   );
