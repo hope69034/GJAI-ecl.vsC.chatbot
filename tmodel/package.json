@@ -42,7 +42,7 @@
     ]
   },
   "browser": {
-    "child_process": false,
-    "spawn": false
+    "child_process": false 
+     
   }
 }

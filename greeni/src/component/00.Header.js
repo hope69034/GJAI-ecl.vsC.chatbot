@@ -13,7 +13,7 @@ function Header() {
         <body style={body}>
             <Link to='/' style={Greeni}> Greeni Page </Link>
             <Link to='/test' style={Greenitest}> Greenitest Page </Link>
-            <Link to='/Makecb' style={Makecb}> Makecb Page </Link>
+            {/* <Link to='/Makecb' style={Makecb}> Makecb Page </Link> */}
         </body>
 
         </>

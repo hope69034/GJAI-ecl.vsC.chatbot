@@ -22,7 +22,7 @@ let inp = '1';
 const outp = spawn('python', ['talkmodel.py', inp]);
 
 outp.stdout.on('data', (result)=>{
-    console.log(outp.toString());
+    console.log(result.toString());
 });
 
 
