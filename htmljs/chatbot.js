@@ -1,17 +1,20 @@
+/* import { spawn } from "child_process"; */
 var p = document.getElementsByTagName('p');
 var body = document.getElementsByTagName('body');
 var box = document.getElementsByClassName("box");
 var repeat = document.getElementById("dog_saying");
 var n = 0;
 
-
+/* const spawn = require('child_process').spawn; */
 function aa(inp){
-    const spawn = require('child_process').spawn;
-    let userinput = inp
+    /* const spawn = require('child_process').spawn; */
+/*     let userinput = inp
     const result_02 = spawn('python', ['talkmodel.py', userinput]);
     result_02.stdout.on('data', (result)=>{
         console.log(result.toString());
-    });
+        
+    }); */
+    console.log(1)
 }
 
 

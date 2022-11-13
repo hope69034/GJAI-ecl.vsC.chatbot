@@ -2,17 +2,22 @@
 const express = require('express');
 const app = express();
 //[기본]라우터경로
-const router=require('./tm.js');
+const router=require('./router.js');
 //[기본]바디파서
- 
+const bodyparser = require('body-parser');
+ //[기본]바디파서를 포스트로 쓰겠다
+app.use(bodyparser.urlencoded({extended:false})) // app use router 위에와야함
 
- 
-// 아직 안씀
 
-/* const sessionrouter=require('./router/sessionrouter.js');
-app.use(sessionrouter);
-app.use(express.static('./public')) */
-    
+//const spawn = require("child_process").spawn;
+
+/* import { spawn } from "child_process";
+const spawn = require("child_process").spawn;
+const outp = spawn("python", ["talkmodel.py", "기분 좋아"]);
+outp.stdout.on("data", (result) => {
+    console.log(result.toString());
+  }); */
+
 
 //[기본]라우터구동
 app.use(router);  //미들웨어로 라우터를 등록해주기

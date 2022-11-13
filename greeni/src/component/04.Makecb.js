@@ -15,24 +15,12 @@
     console.log(data.toString());
 }); */
 
+const spawn = require("child_process").spawn;
 
-const spawn = require('child_process').spawn;
+const outp = spawn("python", ["talkmodel.py",'기분 좋아']);
 
-let inp = '1';
-const outp = spawn('python', ['talkmodel.py', inp]);
-
-outp.stdout.on('data', (result)=>{
-    console.log(result.toString());
+outp.stdout.on("data", (result) => {
+  console.log(result.toString());
 });
 
-
-
-function Makecb() {
-  return (
-      <>
-     Makecb page
-<input></input>
-      </>
-  )
-}
-export default Makecb
+// outp.stdin.on();

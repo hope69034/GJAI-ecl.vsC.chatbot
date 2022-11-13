@@ -1,27 +1,49 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import ChatBot from 'react-simple-chatbot';
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import ChatBot from "react-simple-chatbot";
+
+// .py 다루기
+//import { spawn } from "child_process";
+//import { fork } from "child_process";
+//const child_process = require('child_process');
+
 
 // 아바타 바꾸기
-import greenihead from '../img/greenihead.png'
-const botAvatar = greenihead
+import greenihead from "../img/greenihead.png";
+const botAvatar = greenihead;
+
+
 
 //채팅창 css
 const theme = {
-  background: '#f5f8fb',
-  fontFamily: 'Helvetica Neue',
-  headerBgColor: '#009688',
-  headerFontColor: '#fff',
-  headerFontSize: '15px',
-  botBubbleColor: '#009688',
-  botFontColor: '#fff',
-  userBubbleColor: '#2196f3',
-  userFontColor: '#fff',
+  background: "#f5f8fb",
+  fontFamily: "Helvetica Neue",
+  headerBgColor: "#009688",
+  headerFontColor: "#fff",
+  headerFontSize: "15px",
+  botBubbleColor: "#009688",
+  botFontColor: "#fff",
+  userBubbleColor: "#2196f3",
+  userFontColor: "#fff",
 };
 
-  function abc(nn){
-return (nn + '2')
-/*   const spawn = require('child_process').spawn;
+function abc(nn) {
+  //let answer = "";
+
+  // const fork = require('child_process').fork
+   //const outp = fork("python", ["talkmodel.py", "기분 좋아"]);
+  
+   //const spawn = require("child_process").spawn;
+  //let process = spawn('bash');
+  //const outp = spawn("python", ["talkmodel.py", "기분 좋아"]);
+ 
+/*   outp.stdout.on("data", (result) => {
+    console.log(result.toString());
+  }); */
+
+  return nn;
+}
+  /*   const spawn = require('child_process').spawn;
 
 let inp = nn
 const outp = spawn('python', ['talkmodel.py', inp]);
@@ -29,7 +51,7 @@ const outp = spawn('python', ['talkmodel.py', inp]);
 outp.stdout.on('data', (result)=>{
     console.log(result.toString());
 });  */
-}  
+ 
 
 /* let num = 0;
 let listA = [];
@@ -66,26 +88,23 @@ if (num==0){
  */
 
 const steps = [
-
-  
-
   {
-    id: '1',
-    message: '상담을 시작합니다',
-    trigger: '2',
+    id: "1",
+    message: "상담을 시작합니다",
+    trigger: "2",
   },
 
   {
-    id: '2',
+    id: "2",
     user: true,
-    trigger: '3',   
+    trigger: "3",
   },
 
   {
-    id: '3',
-    message: ({ previousValue, steps }) => abc('{previousValue}'),
-    trigger: '2',
-  }
+    id: "3",
+    message: ({ previousValue, steps }) => abc("{previousValue}"),
+    trigger: "2",
+  },
 ];
 
 //   {
@@ -94,7 +113,6 @@ const steps = [
 //     end: true,
 //   },
 
-
 /* const Greeni = () => (
   <ThemeProvider theme={theme}>
     <ChatBot steps={steps} />;
@@ -102,25 +120,21 @@ const steps = [
 ); */
 
 function Greeni() {
-
   return (
-<>
+    <>
+      <h1>greeni page</h1>
 
-    <h1>greeni page</h1>
-
-  <ThemeProvider theme={theme}>
-
-    <ChatBot 
-    headerTitle="그리니" //채팅창 타이틀
-    className='chatbot'  //클래스네임(CSS를위한)
-    steps={steps}       //인풋아웃풋대본
-    botAvatar={botAvatar}
-    />;
-
-
-  </ThemeProvider>
-  </>
-  )
+      <ThemeProvider theme={theme}>
+        <ChatBot
+          headerTitle="그리니" //채팅창 타이틀
+          className="chatbot" //클래스네임(CSS를위한)
+          steps={steps} //인풋아웃풋대본
+          botAvatar={botAvatar}
+        />
+        ;
+      </ThemeProvider>
+    </>
+  );
 }
 
 export default Greeni;

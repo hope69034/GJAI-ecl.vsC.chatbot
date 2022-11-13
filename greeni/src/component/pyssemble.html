@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- pyodide로드 -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
+  </head>
+  <body>
+    <!-- 화면 첫 줄 -->
+    <!-- <p>
+    그리니의 심리상담
+    </p> -->
+<!-- 아웃풋창 -->
+    <!-- <div>Output:</div> -->
+    <textarea id="output" style="width: 100%;" rows="15"></textarea>
+<!-- 인풋창 -->
+    <!-- value="sum([1, 2, 3, 4, 5])" 는 인풋칸 플레이스홀더 -->
+    <input id="code" value="sum([1, 2, 3, 4, 5])" />
+    <!-- 런 버튼 -->
+    <button onclick="evaluatePython()">Run</button>
+<!-- 스크립트 -->
+    <script>
+
+    // 변수 선언
+      // 아웃풋창을 id="output" 으로 끌어오기
+      const output = document.getElementById("output");
+      // 인풋창을 id="code" 로 끌어오기
+      const code = document.getElementById("code");
+
+    // 아웃풋 출력단
+      // 첫 줄에 바로 출력하는 문장 Initializing...
+      //output.value = "그리니의 심리상담소입니다.\n\n";
+      // 아웃풋 출력단에 문장을 추가하는 펑션 code.value는 인풋
+      function addToOutput(s) {
+        output.value += "나 : " + code.value + "\n" + "그리니 : " + s + "\n\n";
+      }
+      // init Pyodide
+      async function main() {
+        let pyodide = await loadPyodide();
+        // import 하기
+        await pyodide.loadPackage(["pandas"]);
+        //await pyodide.loadPackage(["json"]);
+        output.value += "안녕하세요 그리니의 심리상담소입니다!\n\n";
+        return pyodide;
+      }
+      let pyodideReadyPromise = main();
+
+
+      async function evaluatePython() {
+        let pyodide = await pyodideReadyPromise;
+        try {
+          let output = pyodide.runPython(
+`#################################파이썬 코드
+
+def getName(userinput):
+  return   userinput
+getName(100)
+
+##################################파이썬 코드`
+          );
+          addToOutput(output);
+        } 
+        catch (err) {
+          addToOutput(err);
+        }
+      }
+    </script>
+
+
+  </body>
+</html>
