@@ -1,24 +1,60 @@
+/* else{%>         
+  나 : <%=userInput%> <br><br>
+  그리니 : <%=greeniOutput%>  <br><br>
+  타입인풋 : <%=typeof(userInput)%> 
+  <%}%> */
+
+
+
+
+
+
+
+
+
+/*      나 :# <%=userInput%> <br>
+   그리니 : <%=greeniOutput%>    */
+
+/*    <% if(<%=userInput%> == "undefined"){ %>
+    상담사 그리니입니다. 무슨 고민이 있으세요?
+    <%}  else {%>
+  
+나 : <%=userInput%> <br><br>
+그리니 : <%=greeniOutput%>   
+   
+<%} %> */
+
+
+
+
 const axios = require('axios');
 
 const express = require('express');
 const router = express.Router();
 
-router.get('/plus', function (request, response) {       //  /plus라우터 기능정의및등록
-  /* /plus객체가가진 req res
-  c 가보낸정보 req에잇다
-  res > html 을 c 에게 응답 */
-  console.log(request.query.num1);
-  let inp = request.query.num1
+/* router.get('/',  function (req, res) {
+res.redirect('http://127.0.0.1:5501/nodetm/public/00.Main.html')
+}  */
 
+router.get('/Greeni', function (req, res) {    
+  let userInput = req.query.userInput
   const spawn = require("child_process").spawn;
-  const outp = spawn("python", ["talkmodel.py", inp]);
+  const outp = spawn("python", ["talkmodel.py", userInput]);
+  console.log('greeni라우터진입: 나 : '+ userInput + ', 타입: ' + typeof(userInput))
   outp.stdout.on("data", (result) => {
-    console.log(result.toString());
-    
-    /* response.json('<p>some html</p>'+result.toString()) */
-    response.send('<p>some html</p>'+result.toString())
+    console.log('그리니 : '+result.toString());
+    res.render("greeniTalk", {
+      //email: request.session.email
+      /* user: request.session.user, */
+      userInput: userInput,
+      greeniOutput: result.toString(),
+    });
   });
 });
+
+
+
+
 module.exports = router; //라우터를외부에서사용할수있게
 
 

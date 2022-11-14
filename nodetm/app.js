@@ -9,6 +9,9 @@ const bodyparser = require('body-parser');
 app.use(bodyparser.urlencoded({extended:false})) // app use router 위에와야함
 
 
+//ejs
+app.set("view engine", "ejs");
+
 //const spawn = require("child_process").spawn;
 
 /* import { spawn } from "child_process";

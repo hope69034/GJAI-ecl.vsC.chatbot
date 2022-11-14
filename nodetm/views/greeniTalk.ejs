@@ -1,0 +1,34 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="margin: 20px">
+
+    <h1>그리니의 심리상담소입니다.</h1>
+    <form action="http://127.0.0.1:3001/Greeni" method="get">
+        <input type="text" name="userInput">
+        <input type="submit" value="말하기">
+        <br><br>
+
+        <%if (typeof userInput == 'undefined'){%>
+            그리니 : 심리상담사 그리니입니다. 고민이 무엇인가요?
+            <%}else{%>         
+            나 : <%=userInput%> <br><br>
+            그리니 : <%=greeniOutput%>  <br><br>
+            <%}%>
+
+
+    </form>
+</body>
+
+</html>
+
+ 
