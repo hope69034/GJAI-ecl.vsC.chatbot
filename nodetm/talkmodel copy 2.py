@@ -1,14 +1,19 @@
+# import streamlit as st
 import sys
 import pandas as pd
 import json
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+from sentence_transformers import SentenceTransformer, models
 
+# @st.cache(allow_output_mutation=True) #이거켜도속도똑같음
 def cached_model():
     model = SentenceTransformer('jhgan/ko-sroberta-multitask')
+    #model = SentenceTransformer('.\ko-sroberta-multitask') #로컬폴더를써도속도가같다
     return model
 model = cached_model()
 
+# @st.cache(allow_output_mutation=True)
 def get_dataset():
     df = pd.read_csv('wellness_dataset.csv')
     df['embedding'] = df['embedding'].apply(json.loads)
